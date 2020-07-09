@@ -100,13 +100,7 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
-// var savedPosters = [
-//   makePoster(
-//     "https://i.giphy.com/media/5LU6ZcEGBbhVS/giphy.gif",
-//     "Optimism",
-//     "Keep a joyful heart!"
-//   )
-// ];
+var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
@@ -118,6 +112,14 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-posterImg.src = images[getRandomIndex(images)];
-posterTitle.innerText = titles[getRandomIndex(titles)];
-posterQuote.innerText = quotes[getRandomIndex(quotes)];
+function generatePoster(variable, property, array) {
+  variable[property] = array[getRandomIndex(array)];
+}
+
+generatePoster(posterImg, "src", images);
+generatePoster(posterTitle, "innerText", titles);
+generatePoster(posterQuote, "innerText", quotes);
+
+// posterImg.src = images[getRandomIndex(images)];
+// posterTitle.innerText = titles[getRandomIndex(titles)];
+// posterQuote.innerText = quotes[getRandomIndex(quotes)];
