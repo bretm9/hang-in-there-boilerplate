@@ -1,7 +1,14 @@
 // query selector variables go here 👇
 var posterImg = document.querySelector(".poster-img");
-var posterTitle = document.querySelector(".poster-title")
+var posterTitle = document.querySelector(".poster-title");
 var posterQuote = document.querySelector(".poster-quote");
+var mainPoster = document.querySelector(".main-poster");
+var mainPosterHidden = document.querySelector(".main-poster hidden");
+var savedPosters = document.querySelector(".saved-posters");
+var savedPostersHidden = document.querySelector(".saved-posters hidden");
+var posterForm = document.querySelector(".poster-form");
+var posterFormHidden = document.querySelector(".poster-form hidden");
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -116,6 +123,13 @@ function generatePoster(variable, property, array) {
   variable[property] = array[getRandomIndex(array)];
 }
 
+function switchViews(visible, hidden) {
+  visible.className = `${visible.className} hidden`;
+  hidden.className = hidden.className.replace(" hidden", "");
+}
+
 generatePoster(posterImg, "src", images);
 generatePoster(posterTitle, "innerText", titles);
 generatePoster(posterQuote, "innerText", quotes);
+
+switchViews(mainPoster, posterFormHidden);
