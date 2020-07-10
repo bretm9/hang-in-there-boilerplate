@@ -3,11 +3,8 @@ var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
 var posterQuote = document.querySelector(".poster-quote");
 var mainPoster = document.querySelector(".main-poster");
-var mainPosterHidden = document.querySelector(".main-poster hidden");
 var savedPosters = document.querySelector(".saved-posters");
-var savedPostersHidden = document.querySelector(".saved-posters hidden");
 var posterForm = document.querySelector(".poster-form");
-var posterFormHidden = document.querySelector(".poster-form hidden");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -128,8 +125,11 @@ function switchViews(visible, hidden) {
   hidden.className = hidden.className.replace(" hidden", "");
 }
 
+
 generatePoster(posterImg, "src", images);
 generatePoster(posterTitle, "innerText", titles);
 generatePoster(posterQuote, "innerText", quotes);
 
-switchViews(mainPoster, posterFormHidden);
+switchViews(mainPoster, posterForm);
+// swtichViews(savedPosters, mainPoster);
+// switchViews(mainPoster, savedPosters);
