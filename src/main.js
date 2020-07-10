@@ -119,7 +119,3 @@ function generatePoster(variable, property, array) {
 generatePoster(posterImg, "src", images);
 generatePoster(posterTitle, "innerText", titles);
 generatePoster(posterQuote, "innerText", quotes);
-
-// posterImg.src = images[getRandomIndex(images)];
-// posterTitle.innerText = titles[getRandomIndex(titles)];
-// posterQuote.innerText = quotes[getRandomIndex(quotes)];
