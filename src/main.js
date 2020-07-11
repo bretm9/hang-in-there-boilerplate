@@ -3,8 +3,12 @@ var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
 var posterQuote = document.querySelector(".poster-quote");
 var mainPoster = document.querySelector(".main-poster");
-var savedPosters = document.querySelector(".saved-posters");
+var savedPostersView = document.querySelector(".saved-posters");
 var posterForm = document.querySelector(".poster-form");
+var showSavedPosterButton = document.querySelector(".show-saved");
+var posterFormButton = document.querySelector(".show-form");
+var showMainButton = document.querySelector(".show-main");
+var backToMainButton = document.querySelector(".back-to-main");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -104,10 +108,26 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
-var savedPosters = [];
+// var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
+// showSavedPosterButton.addEventListener('click', switchViews(mainPoster, savedPosters));
+posterFormButton.addEventListener('click', function(){
+  switchViews(mainPoster, posterForm)
+});
+
+showSavedPosterButton.addEventListener('click', function(){
+  switchViews(mainPoster, savedPostersView)
+});
+
+showMainButton.addEventListener('click', function(){
+  switchViews(posterForm, mainPoster)
+});
+
+backToMainButton.addEventListener('click', function(){
+  switchViews(savedPostersView, mainPoster)
+});
 
 // functions and event handlers go here 👇
 
@@ -125,11 +145,11 @@ function switchViews(visible, hidden) {
   hidden.className = hidden.className.replace(" hidden", "");
 }
 
-
 generatePoster(posterImg, "src", images);
 generatePoster(posterTitle, "innerText", titles);
 generatePoster(posterQuote, "innerText", quotes);
 
-switchViews(mainPoster, posterForm);
+// switchViews(mainPoster, posterForm);
+// switchViews(mainPoster, savedPosters);
 // swtichViews(savedPosters, mainPoster);
 // switchViews(mainPoster, savedPosters);
