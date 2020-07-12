@@ -1,3 +1,11 @@
+class PosterClass {
+  constructor(img, title, quote) {
+  this.img = img;
+  this.title = title;
+  this.quote = quote;
+  }
+}
+
 // query selector variables go here 👇
 var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
@@ -9,6 +17,10 @@ var showSavedPosterButton = document.querySelector(".show-saved");
 var posterFormButton = document.querySelector(".show-form");
 var showMainButton = document.querySelector(".show-main");
 var backToMainButton = document.querySelector(".back-to-main");
+var inputImgUrl = document.querySelector('#poster-image-url');
+var inputPosterTitle = document.querySelector("#poster-title");
+var inputPosterQuote = document.querySelector("#poster-quote");
+var makePosterButton = document.querySelector(".make-poster");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -108,11 +120,11 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
-// var savedPosters = [];
+
+var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
-// showSavedPosterButton.addEventListener('click', switchViews(mainPoster, savedPosters));
 posterFormButton.addEventListener('click', function(){
   switchViews(mainPoster, posterForm)
 });
@@ -125,12 +137,18 @@ showMainButton.addEventListener('click', function(){
   switchViews(posterForm, mainPoster)
 });
 
+makePosterButton.addEventListener('click', function(){
+  switchViews(posterForm, mainPoster);
+  event.preventDefault();
+});
+
 backToMainButton.addEventListener('click', function(){
   switchViews(savedPostersView, mainPoster)
 });
 
-// functions and event handlers go here 👇
+makePosterButton.addEventListener('click', changePoster)
 
+// functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -145,11 +163,17 @@ function switchViews(visible, hidden) {
   hidden.className = hidden.className.replace(" hidden", "");
 }
 
+function changePoster() {
+  posterImg.src = inputImgUrl.value;
+  images.push(inputImgUrl.value);
+  posterTitle.innerText = inputPosterTitle.value;
+  titles.push(inputPosterTitle.value);
+  posterQuote.innerText = inputPosterQuote.value;
+  quotes.push(inputPosterQuote.value);
+  var newPoster = new PosterClass(inputImgUrl.value, inputPosterTitle.value, inputPosterQuote.value);
+  savedPosters.push(newPoster);
+}
+
 generatePoster(posterImg, "src", images);
 generatePoster(posterTitle, "innerText", titles);
 generatePoster(posterQuote, "innerText", quotes);
-
-// switchViews(mainPoster, posterForm);
-// switchViews(mainPoster, savedPosters);
-// swtichViews(savedPosters, mainPoster);
-// switchViews(mainPoster, savedPosters);
