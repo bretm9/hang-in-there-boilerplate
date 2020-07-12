@@ -1,3 +1,11 @@
+class PosterClass {
+  constructor(img, title, quote) {
+  this.img = img;
+  this.title = title;
+  this.quote = quote;
+  }
+}
+
 // query selector variables go here 👇
 var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
