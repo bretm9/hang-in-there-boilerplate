@@ -163,6 +163,11 @@ function switchViews(visible, hidden) {
   hidden.className = hidden.className.replace(" hidden", "");
 }
 
+function savePoster(){
+  var newPoster = new PosterClass(inputImgUrl.value, inputPosterTitle.value, inputPosterQuote.value);
+  savedPosters.push(newPoster);
+}
+
 function changePoster() {
   posterImg.src = inputImgUrl.value;
   images.push(inputImgUrl.value);
@@ -170,9 +175,10 @@ function changePoster() {
   titles.push(inputPosterTitle.value);
   posterQuote.innerText = inputPosterQuote.value;
   quotes.push(inputPosterQuote.value);
-  var newPoster = new PosterClass(inputImgUrl.value, inputPosterTitle.value, inputPosterQuote.value);
-  savedPosters.push(newPoster);
+  savePoster();
 }
+
+
 
 generatePoster(posterImg, "src", images);
 generatePoster(posterTitle, "innerText", titles);
