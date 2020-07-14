@@ -149,10 +149,11 @@ backToMainButton.addEventListener('click', function(){
   switchViews(savedPostersView, mainPoster)
 });
 
-makePosterButton.addEventListener('click', changePoster)
+makePosterButton.addEventListener('click', changePoster);
 
-savePosterButton.addEventListener('click', savePoster)
+savePosterButton.addEventListener('click', savePoster);
 
+savePostersGrid.addEventListener('dblclick', deletePoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -182,8 +183,15 @@ function savePoster(){
   var newPoster = new PosterClass(posterImg.src, posterTitle.innerText, posterQuote.innerText);
   savedPosters.push(newPoster);
 
-  savePostersGrid.insertAdjacentHTML("afterbegin",`<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`)
+  savePostersGrid.innerHTML = savePostersGrid.innerHTML + `<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`
 };
+
+function deletePoster(event) {
+    // if event.target = div {
+    // } else {
+    event.target.classList.toggle("hidden");
+  }
+
 
 function changePoster() {
   posterImg.src = inputImgUrl.value;
