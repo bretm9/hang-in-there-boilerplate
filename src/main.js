@@ -154,6 +154,7 @@ makePosterButton.addEventListener('click', changePoster)
 
 savePosterButton.addEventListener('click', savePoster)
 
+
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -174,9 +175,22 @@ function switchViews(visible, hidden) {
 }
 
 function savePoster(){
-  var newPoster = new PosterClass(posterImg.src, posterTitle.innerText, posterQuote.innerText);
-  savedPosters.push(newPoster);
+  var posterExists = false;
+  for (var i = 0; i < savedPosters.length - 1; i++) {
+    if (savedPosters[i].img === posterImg.src || savedPosters[i].title === posterTitle.innerText && savedPosters[i].quote === posterQuote.innerText) {
+      posterExists = true;
+    }
+  }
+
+
+  if (posterExists == false) {
+    var newPoster = new PosterClass(posterImg.src, posterTitle.innerText, posterQuote.innerText);
+    savedPosters.push(newPoster);
+  }
 }
+
+
+
 
 function changePoster() {
   posterImg.src = inputImgUrl.value;
