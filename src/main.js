@@ -1,11 +1,3 @@
-class PosterClass {
-  constructor(img, title, quote) {
-  this.img = img;
-  this.title = title;
-  this.quote = quote;
-  }
-}
-
 // query selector variables go here 👇
 var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
@@ -183,14 +175,14 @@ function switchViews(visible, hidden) {
 
 function savePoster(){
   for (var i = 0; i < savedPosters.length; i++) {
-    if (savedPosters[i].img === posterImg.src && savedPosters[i].title === posterTitle.innerText && savedPosters[i].quote === posterQuote.innerText) {
+    if (savedPosters[i].imageURL === posterImg.src && savedPosters[i].title === posterTitle.innerText && savedPosters[i].quote === posterQuote.innerText) {
       return "Poster is a duplicate"
     }
   }
-  var newPoster = new PosterClass(posterImg.src, posterTitle.innerText, posterQuote.innerText);
+  var newPoster = new Poster(posterImg.src, posterTitle.innerText, posterQuote.innerText);
   savedPosters.push(newPoster);
 
-  savePostersGrid.innerHTML = savePostersGrid.innerHTML + `<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`
+  savePostersGrid.innerHTML = savePostersGrid.innerHTML + `<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].imageURL}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`
 };
 
 function deletePoster() {
