@@ -162,8 +162,8 @@ generatePoster(posterTitle, "innerText", titles);
 generatePoster(posterQuote, "innerText", quotes);
 
 function switchViews(visible, hidden) {
-  visible.className = `${visible.className} hidden`;
-  hidden.className = hidden.className.replace(" hidden", "");
+  visible.classList.toggle("hidden");
+  hidden.classList.toggle("hidden");
 }
 
 function savePoster(){
@@ -176,7 +176,7 @@ function savePoster(){
   savedPosters.push(newPoster);
 
   savePostersGrid.innerHTML = savePostersGrid.innerHTML + `<div class="mini-poster"><img src=${savedPosters[savedPosters.length - 1].imageURL}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`
-};
+}
 
 function deletePoster() {
   var miniPoster = document.querySelector(".mini-poster");
