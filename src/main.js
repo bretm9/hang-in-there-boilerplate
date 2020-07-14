@@ -23,6 +23,7 @@ var inputPosterQuote = document.querySelector("#poster-quote");
 var makePosterButton = document.querySelector(".make-poster");
 var savePosterButton = document.querySelector(".save-poster");
 var savePostersGrid = document.querySelector(".saved-posters-grid");
+var randomPosterButton = document.querySelector(".show-random");
 
 
 // we've provided you with some data to work with 👇
@@ -149,10 +150,17 @@ backToMainButton.addEventListener('click', function(){
   switchViews(savedPostersView, mainPoster)
 });
 
-makePosterButton.addEventListener('click', changePoster)
+makePosterButton.addEventListener('click', changePoster);
 
-savePosterButton.addEventListener('click', savePoster)
+savePosterButton.addEventListener('click', savePoster);
 
+randomPosterButton.addEventListener('click', function() {
+  generatePoster(posterImg, "src", images);
+  generatePoster(posterTitle, "innerText", titles);
+  generatePoster(posterQuote, "innerText", quotes);
+})
+
+savePostersGrid.addEventListener('dblclick', deletePoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -182,8 +190,17 @@ function savePoster(){
   var newPoster = new PosterClass(posterImg.src, posterTitle.innerText, posterQuote.innerText);
   savedPosters.push(newPoster);
 
-  savePostersGrid.insertAdjacentHTML("afterbegin",`<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`)
+  savePostersGrid.innerHTML = savePostersGrid.innerHTML + `<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`
 };
+
+function deletePoster() {
+  var miniPoster = document.querySelector(".mini-poster");
+  if (event.target.tagName === "DIV") {
+    event.target.classList.toggle("hidden");
+  } else if (event.target.tagName === "H2" || event.target.tagName === "H4" || event.target.tagName === "IMG"){
+    event.target.parentNode.classList.toggle("hidden");
+  }
+}
 
 function changePoster() {
   posterImg.src = inputImgUrl.value;
