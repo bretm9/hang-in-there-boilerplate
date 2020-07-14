@@ -193,12 +193,14 @@ function savePoster(){
   savePostersGrid.innerHTML = savePostersGrid.innerHTML + `<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`
 };
 
-function deletePoster(event) {
-    // if event.target = div {
-    // } else {
+function deletePoster() {
+  var miniPoster = document.querySelector(".mini-poster");
+  if (event.target.tagName === "DIV") {
     event.target.classList.toggle("hidden");
+  } else if (event.target.tagName === "H2" || event.target.tagName === "H4" || event.target.tagName === "IMG"){
+    event.target.parentNode.classList.toggle("hidden");
   }
-
+}
 
 function changePoster() {
   posterImg.src = inputImgUrl.value;
