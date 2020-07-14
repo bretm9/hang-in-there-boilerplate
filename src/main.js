@@ -23,6 +23,7 @@ var inputPosterQuote = document.querySelector("#poster-quote");
 var makePosterButton = document.querySelector(".make-poster");
 var savePosterButton = document.querySelector(".save-poster");
 var savePostersGrid = document.querySelector(".saved-posters-grid");
+var randomPosterButton = document.querySelector(".show-random");
 
 
 // we've provided you with some data to work with 👇
@@ -152,6 +153,12 @@ backToMainButton.addEventListener('click', function(){
 makePosterButton.addEventListener('click', changePoster);
 
 savePosterButton.addEventListener('click', savePoster);
+
+randomPosterButton.addEventListener('click', function() {
+  generatePoster(posterImg, "src", images);
+  generatePoster(posterTitle, "innerText", titles);
+  generatePoster(posterQuote, "innerText", quotes);
+})
 
 savePostersGrid.addEventListener('dblclick', deletePoster);
 
