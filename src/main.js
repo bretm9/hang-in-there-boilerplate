@@ -8,7 +8,7 @@ var showSavedPosterButton = document.querySelector(".show-saved");
 var posterFormButton = document.querySelector(".show-form");
 var showMainButton = document.querySelector(".show-main");
 var backToMainButton = document.querySelector(".back-to-main");
-var inputImgUrl = document.querySelector('#poster-image-url');
+var inputImgUrl = document.querySelector("#poster-image-url");
 var inputPosterTitle = document.querySelector("#poster-title");
 var inputPosterQuote = document.querySelector("#poster-quote");
 var makePosterButton = document.querySelector(".make-poster");
@@ -116,38 +116,38 @@ var quotes = [
 
 var savedPosters = [];
 
-posterFormButton.addEventListener('click', function(){
+posterFormButton.addEventListener("click", function(){
   switchViews(mainPoster, posterForm)
 });
 
-showSavedPosterButton.addEventListener('click', function(){
+showSavedPosterButton.addEventListener("click", function(){
   switchViews(mainPoster, savedPostersView);
 });
 
-showMainButton.addEventListener('click', function(){
+showMainButton.addEventListener("click", function(){
   switchViews(posterForm, mainPoster)
 });
 
-makePosterButton.addEventListener('click', function(){
+makePosterButton.addEventListener("click", function(){
   switchViews(posterForm, mainPoster);
   event.preventDefault();
 });
 
-backToMainButton.addEventListener('click', function(){
+backToMainButton.addEventListener("click", function(){
   switchViews(savedPostersView, mainPoster)
 });
 
-makePosterButton.addEventListener('click', changePoster);
+makePosterButton.addEventListener("click", changePoster);
 
-savePosterButton.addEventListener('click', savePoster);
+savePosterButton.addEventListener("click", savePoster);
 
-randomPosterButton.addEventListener('click', function() {
+randomPosterButton.addEventListener("click", function() {
   generatePoster(posterImg, "src", images);
   generatePoster(posterTitle, "innerText", titles);
   generatePoster(posterQuote, "innerText", quotes);
 })
 
-savePostersGrid.addEventListener('dblclick', deletePoster);
+savePostersGrid.addEventListener("dblclick", deletePoster);
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -175,7 +175,7 @@ function savePoster(){
   var newPoster = new Poster(posterImg.src, posterTitle.innerText, posterQuote.innerText);
   savedPosters.push(newPoster);
 
-  savePostersGrid.innerHTML = savePostersGrid.innerHTML + `<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].imageURL}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`
+  savePostersGrid.innerHTML = savePostersGrid.innerHTML + `<div class="mini-poster"><img src=${savedPosters[savedPosters.length - 1].imageURL}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`
 };
 
 function deletePoster() {
