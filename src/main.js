@@ -134,7 +134,6 @@ posterFormButton.addEventListener('click', function(){
 
 showSavedPosterButton.addEventListener('click', function(){
   switchViews(mainPoster, savedPostersView);
-  displaySavedPosters();
 });
 
 showMainButton.addEventListener('click', function(){
@@ -175,22 +174,16 @@ function switchViews(visible, hidden) {
 }
 
 function savePoster(){
-  var posterExists = false;
-  for (var i = 0; i < savedPosters.length - 1; i++) {
-    if (savedPosters[i].img === posterImg.src || savedPosters[i].title === posterTitle.innerText && savedPosters[i].quote === posterQuote.innerText) {
-      posterExists = true;
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].img === posterImg.src && savedPosters[i].title === posterTitle.innerText && savedPosters[i].quote === posterQuote.innerText) {
+      return "Poster is a duplicate"
     }
   }
+  var newPoster = new PosterClass(posterImg.src, posterTitle.innerText, posterQuote.innerText);
+  savedPosters.push(newPoster);
 
-
-  if (posterExists == false) {
-    var newPoster = new PosterClass(posterImg.src, posterTitle.innerText, posterQuote.innerText);
-    savedPosters.push(newPoster);
-  }
-}
-
-
-
+  savePostersGrid.insertAdjacentHTML("afterbegin",`<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`)
+};
 
 function changePoster() {
   posterImg.src = inputImgUrl.value;
@@ -199,10 +192,6 @@ function changePoster() {
   titles.push(inputPosterTitle.value);
   posterQuote.innerText = inputPosterQuote.value;
   quotes.push(inputPosterQuote.value);
-}
-
-function displaySavedPosters(){
-  savePostersGrid.insertAdjacentHTML("afterbegin",`<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`)
 }
 
 // generatePoster(posterImg, "src", images);
