@@ -21,6 +21,9 @@ var inputImgUrl = document.querySelector('#poster-image-url');
 var inputPosterTitle = document.querySelector("#poster-title");
 var inputPosterQuote = document.querySelector("#poster-quote");
 var makePosterButton = document.querySelector(".make-poster");
+var savePosterButton = document.querySelector(".save-poster");
+var savePostersGrid = document.querySelector(".saved-posters-grid");
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -130,7 +133,8 @@ posterFormButton.addEventListener('click', function(){
 });
 
 showSavedPosterButton.addEventListener('click', function(){
-  switchViews(mainPoster, savedPostersView)
+  switchViews(mainPoster, savedPostersView);
+  displaySavedPosters();
 });
 
 showMainButton.addEventListener('click', function(){
@@ -148,6 +152,8 @@ backToMainButton.addEventListener('click', function(){
 
 makePosterButton.addEventListener('click', changePoster)
 
+savePosterButton.addEventListener('click', savePoster)
+
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -158,13 +164,17 @@ function generatePoster(variable, property, array) {
   variable[property] = array[getRandomIndex(array)];
 }
 
+generatePoster(posterImg, "src", images);
+generatePoster(posterTitle, "innerText", titles);
+generatePoster(posterQuote, "innerText", quotes);
+
 function switchViews(visible, hidden) {
   visible.className = `${visible.className} hidden`;
   hidden.className = hidden.className.replace(" hidden", "");
 }
 
 function savePoster(){
-  var newPoster = new PosterClass(inputImgUrl.value, inputPosterTitle.value, inputPosterQuote.value);
+  var newPoster = new PosterClass(posterImg.src, posterTitle.innerText, posterQuote.innerText);
   savedPosters.push(newPoster);
 }
 
@@ -175,11 +185,12 @@ function changePoster() {
   titles.push(inputPosterTitle.value);
   posterQuote.innerText = inputPosterQuote.value;
   quotes.push(inputPosterQuote.value);
-  savePoster();
 }
 
+function displaySavedPosters(){
+  savePostersGrid.insertAdjacentHTML("afterbegin",`<div class='mini-poster'><img src=${savedPosters[savedPosters.length - 1].img}><h2>${savedPosters[savedPosters.length - 1].title}</h2><h4>${savedPosters[savedPosters.length - 1].quote}</h4></div>`)
+}
 
-
-generatePoster(posterImg, "src", images);
-generatePoster(posterTitle, "innerText", titles);
-generatePoster(posterQuote, "innerText", quotes);
+// generatePoster(posterImg, "src", images);
+// generatePoster(posterTitle, "innerText", titles);
+// generatePoster(posterQuote, "innerText", quotes);
